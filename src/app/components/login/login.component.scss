@@ -1,0 +1,10 @@
+.mat-card {
+  height: 100%;
+  border: 2px solid black;
+}
+
+.header-image {
+    background-image: url("../../../assets/logo.png");
+    background-repeat: no-repeat;     //important
+    background-size:contain;
+}

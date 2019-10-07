@@ -1,0 +1,76 @@
+
+<mat-toolbar color="basic" class="dashboard-toolbar" fxLayoutAlign="start center" fxLayout="row">
+  <mat-toolbar-row>
+      <mat-icon class="dashboard-icon" aria-hidden="false" aria-label="Example heart icon"
+      type="button" mat-button (click)="drawer.toggle()">
+          menu
+        </mat-icon>
+        <img src="../../../assets/logo1.png" width=65px height=40px>
+        <p>FUNDOO Keep</p>
+        <mat-form-field class="dashboard-searchbar" appearance="outline" fxHide.xs="true" fxShow="true" fxFlex="70">
+          <mat-icon matPrefix>search</mat-icon>
+          <input matInput placeholder="  Search">
+          </mat-form-field>
+
+          <button mat-button class="toolbar-refresh" matTooltip="Refresh">
+            <mat-icon >refresh</mat-icon>
+            </button>
+            <button mat-button class="toolbar-list" matTooltip="List View">
+            <mat-icon>list</mat-icon>
+            </button>
+            <button mat-button class="toolbar-settings" matTooltip="Settings">
+            <mat-icon>settings</mat-icon>
+            </button>
+            <button mat-button [matMenuTriggerFor]="belowMenu">
+            <img mat-card-avatar src="../../../assets/logo.png" class="avatar-img" >
+
+            </button>
+            <mat-menu #belowMenu="matMenu" yPosition="below">
+              <button mat-menu-item>LOG OUT</button>
+              <button mat-menu-item>LOGIN TO Another Account</button>
+            </mat-menu>
+
+        <!-- <input type="search" class="searchbar" placeholder="Search"> -->
+      </mat-toolbar-row>
+    </mat-toolbar>
+    
+    
+    <span class="dashboard-spacer"></span>
+    <mat-drawer-container class="dashboard-container" autosize>
+        <mat-drawer #drawer class="dashboard-sidenav" mode="side" opened>
+            <mat-list fxLayout="column">
+                
+                <mat-list-item fxLayout="row" fxLayoutAlign="start center" >
+                  <mat-icon mat-list-icon>note_add</mat-icon>Notes
+                 </mat-list-item>
+
+                <mat-divider></mat-divider>
+                
+                <mat-list-item fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon mat-list-icon>notifications_none</mat-icon>Reminders
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+                
+                <h3 matSubheader>LABELS</h3>
+                <mat-list-item *ngIf="label"><mat-icon matListIcon>label</mat-icon>{{label}}</mat-list-item>
+                <mat-list-item fxLayout="row" fxLayoutAlign="start center">
+                 <button mat-button (click)="openDialog()"><mat-icon matListIcon>edit</mat-icon>Edit Label</button> 
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+                
+                <mat-list-item fxLayout="row" fxLayoutAlign="start center">
+                  <button mat-button><mat-icon matListIcon>archive</mat-icon>Archive</button>
+                </mat-list-item>
+                <mat-list-item fxLayout="row" fxLayoutAlign="start center">
+                  <button mat-button><mat-icon matListIcon>delete_outline</mat-icon>Trash</button>
+                </mat-list-item>
+
+
+              </mat-list>
+        </mat-drawer>
+        <app-take-note></app-take-note>
+      
+
+      </mat-drawer-container>

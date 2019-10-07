@@ -1,0 +1,33 @@
+<body style="background-color:blanchedalmond;" fxLayout="column" fxLayoutAlign = "space-around center" >
+<mat-card class="mat-card" fxFlex="50" fxLayout="column" fxLayoutAlign = "space-around center">
+        <mat-card-header>
+                <div mat-card-avatar class="header-image"></div>
+                  <mat-card-title>RESET PAGE</mat-card-title>
+                   <mat-card-subtitle>ENTER YOUR NEW PASSWORD</mat-card-subtitle>
+        </mat-card-header>
+
+    <div fxLayout='column' fxLayout.sm="column" fxLayout.xs="column">
+       
+       
+        <mat-form-field appearance="outline" class="reg-input">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter your password" name="password" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="outline" class="reg-input">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput placeholder="Confirm your password" name="confirmpassword" [type]="hide ? 'password' : 'text'" required> <!--pattern="{{ password.value }}" -->
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                <!-- <mat-error *ngIf="confirmpassword.errors.pattern">Confirm password does not match password</mat-error> -->
+            </mat-form-field>
+       
+       
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button color="primary" routerLink="/login" style="margin:0.625rem" >BACK TO LOGIN PAGE </button>
+        </mat-card-actions>
+        
+    </mat-card>
+</body>

@@ -1,0 +1,47 @@
+// .mat-card {
+   
+//     margin-top: 5%;
+//     margin-left: 350px;
+//     border: 3px solid black;//
+//     padding: 5px; //
+//     margin-bottom: 0%;
+//     position : absolute;
+//     height: 80%;
+//     width: 100%;
+//     max-width: 500px;
+//     background-color: rgb(150, 207, 150)
+//   }
+#flexcontainer {
+    // width:800px;
+    // height: 300px;
+    border: 3px solid black;
+    display: flex;
+    flex-flow: column wrap;
+    padding: 100px;
+  }
+  
+ .header-image {
+    background-image: url("../../assets/logo.png");
+    background-repeat: no-repeat;     //important
+    background-size:contain;
+  }
+ .flexitem {
+    background:lightskyblue;
+    // align-items : center;
+    // width: 500px ;
+    
+    // height: 60px;
+    // line-height: 100px;
+    // margin: 2px;
+  }
+  
+ .two {
+    background: green;
+    width: 100px;
+    order: 3;
+  }
+
+ .name-container > * {
+        width : 100%;
+         }
+  

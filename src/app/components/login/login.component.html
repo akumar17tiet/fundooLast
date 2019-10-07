@@ -1,0 +1,43 @@
+<div style="display: flex; align-items: center; justify-content: center; width: 100%">
+<mat-card class="mat-card" style="width: 60%" fxFlex="35" fxLayout="column" fxLayoutAlign = "space-around stretch">
+    
+  
+  <mat-card-header>
+   <div mat-card-avatar class="header-image"></div>
+     <mat-card-title>LOGIN PAGE</mat-card-title>
+      <mat-card-subtitle>ENTER YOUR CREDENTIALS</mat-card-subtitle>
+        </mat-card-header>
+    
+    
+  <mat-card-content>
+    <div class="register-container">
+         
+            <div class="email-container">
+              <mat-form-field>
+                <input matInput placeholder="Enter your email" [formControl]="email" required>
+                <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
+              </mat-form-field>
+            </div>
+ 
+            <div class="password-container">
+              <mat-form-field>
+                <input matInput placeholder="Enter your password" [formControl]="password" required [type]="hide ? 'password' : 'text'">
+                <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+              </mat-form-field>
+          </div>
+        </div>
+
+
+        <mat-card-actions fxLayout='row' fxLayout.sm="column" fxLayout.xs="column"  >
+      <button mat-raised-button  color ="primary" routerLink="/forget" style="margin:0.625rem">FORGOT PASSWORD?</button>
+      <button mat-raised-button color="primary" routerLink="/register" style="margin:0.625rem">NEW USER ?</button>  
+      <button mat-raised-button color="primary" (click)="onLogin()" style="margin:0.625rem">LOGIN</button>
+        </mat-card-actions>
+     
+        
+    </mat-card-content>
+</mat-card>
+</div>
+
+

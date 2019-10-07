@@ -1,0 +1,54 @@
+.dashboard-icon {
+  padding: 0 14px;
+}
+
+.dashboard-spacer {
+  flex: 1 1 auto;
+}
+
+.dashboard-searchbar{
+  padding-top:2%;
+  //  width:700px;
+  // height:20%;
+  transform: translateX(-1.1em) scale(.85);
+}
+.dashboard-container {
+  
+  width: 100%;
+  height: 600px; 
+  //border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-sidenav {
+  padding: 20px; 
+  width:20%;
+  height:98%;
+  background-color:whitesmoke;
+  //border: 2px dashed rgba(0, 0, 0, 0.5);
+}
+
+.searchbar{
+  padding-right:5%;
+  width:370px;
+  height:50px;
+}
+.avatar-img{
+  height: 40px;
+  width: 40px;
+  position:relative;
+}
+
+
+// .example-container {
+//     width: 200px;
+//     height: 100%;
+//     margin: 12px;
+//     border: 1px solid #555;
+//   }
+  
+//   mat-drawer-content {
+//     padding: 120px;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+//   }
