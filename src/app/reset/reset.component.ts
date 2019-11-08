@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { ConnectService } from '../../app/services/services.service';
-import { User } from '../reset/reset-model';
+import { Reset } from '../model/reset.model';
+import { Router , ActivatedRoute} from "@angular/router";
+import { throwToolbarMixedModesError } from '@angular/material';
 
 @Component({
   selector: 'app-reset',
@@ -9,7 +11,7 @@ import { User } from '../reset/reset-model';
   styleUrls: ['./reset.component.scss']
 })
 export class ResetComponent implements OnInit {
-  userObj: any=new User();
+  userObj: Reset = new Reset();
   password = new FormControl('', [Validators.required, Validators.minLength(8)]);
   confirmPassword = new FormControl('', [Validators.required, Validators.minLength(8), Validators.pattern(this.password.value)]);
   // password = new FormControl('',[Validators.required]);
@@ -20,9 +22,12 @@ export class ResetComponent implements OnInit {
     this.password.hasError('minlength') ? 'Minimum length should be 8 characters' : ''
   }
 
-  constructor() { }
-
+  constructor(private userService: ConnectService, private router: Router, private activated: ActivatedRoute) { }
+  
+  accessToken = this.activated.snapshot.paramMap.get('token');
+  
   ngOnInit() {
+    localStorage.setItem('token', this.accessToken);
   }
   PasswordInvalidMessage() {
     if (this.password.hasError("required")) {
@@ -45,4 +50,24 @@ export class ResetComponent implements OnInit {
       return "Password did not match"
     }
   }
-}
+  OnReset(){
+    var userObj1 = {
+      newPassword : this.password.value
+    }
+    let options = {
+      data : userObj1,
+      purpose: 'user/reset-password'
+    }
+    console.log("resetComponent")
+    this.userService.resetService(options).subscribe((data:any)=> {
+      console.log(data);
+      localStorage.clear();
+      this.router.navigate(['/login']);
+    }, (error)=>{
+      console.log("This is error");
+      console.log(error);
+    });
+  }
+  }
+
+

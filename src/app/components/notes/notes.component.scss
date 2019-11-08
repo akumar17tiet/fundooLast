@@ -1,0 +1,13 @@
+// .container{
+//     height: 100%;
+// }
+.container {
+    height: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    overflow: scroll;
+    width: 100%;
+    padding-left: 11%;
+    padding-right: 3%;
+    padding-top: 4%;
+}

@@ -6,10 +6,10 @@
    <div mat-card-avatar class="header-image"></div>
      <mat-card-title>LOGIN PAGE</mat-card-title>
       <mat-card-subtitle>ENTER YOUR CREDENTIALS</mat-card-subtitle>
-        </mat-card-header>
+  </mat-card-header>
+   
     
-    
-  <mat-card-content>
+  <mat-card-content >
     <div class="register-container">
          
             <div class="email-container">
@@ -31,11 +31,15 @@
 
         <mat-card-actions fxLayout='row' fxLayout.sm="column" fxLayout.xs="column"  >
       <button mat-raised-button  color ="primary" routerLink="/forget" style="margin:0.625rem">FORGOT PASSWORD?</button>
-      <button mat-raised-button color="primary" routerLink="/register" style="margin:0.625rem">NEW USER ?</button>  
+      <button mat-raised-button color="primary" routerLink= "/product" style="margin:0.625rem">NEW USER ?</button>  
       <button mat-raised-button color="primary" (click)="onLogin()" style="margin:0.625rem">LOGIN</button>
+      
+
+      <!-- <b><a class="gotoReg" routerLink="/product">Create Account</a></b> -->
+      <!-- <button mat-raised-button color="primary" routerLink="/register" style="margin:0.625rem">CREATE ACCOUNT</button>   -->
+
         </mat-card-actions>
-     
-        
+             
     </mat-card-content>
 </mat-card>
 </div>

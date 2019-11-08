@@ -1,4 +1,58 @@
-.take-note{
-    width:70%;
-    border-radius:20px;
+.mat-card-note {
+    width: 40%;
+    margin-top: 7%;
+    border-radius: 15px;
+    // position: fixed;
+}
+
+.take-note-input {
+    outline: none;
+    border: transparent;
+}
+
+.text-area {
+    outline: none;
+    overflow: none;
+    width: 85%;
+    border: transparent;
+    resize: none;
+}
+
+.label-cross{
+    transform:scale(0.7);
+}
+
+.label-chip{
+    .label-cross{
+        opacity:0;
+    }
+    &:hover{
+        .label-cross{
+            opacity:1;
+        }
+    }
+    opacity: 0.80;
+    &:hover {
+        opacity:1;
+    }
+    filter:brightness(75%);
+}
+.checklist{
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.visiblez{
+    opacity: 0;    
+    background: transparent;
+    &:hover{        
+            opacity:1;
+    }
+}
+.placeholder{
+    border: none;
+    outline: none;
+    background: transparent;
+
 }

@@ -1,14 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IconlistComponent } from './iconlist.component';
-
+import { MatMenuModule} from '@angular/material/menu';
+import { MatTooltipModule } from "@angular/material";
+import {HttpClientTestingModule} from '@angular/common/http/testing';
 describe('IconlistComponent', () => {
   let component: IconlistComponent;
   let fixture: ComponentFixture<IconlistComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ IconlistComponent ]
+      declarations: [ IconlistComponent ],
+      imports: [
+        MatMenuModule,
+        MatTooltipModule,
+        HttpClientTestingModule
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   }));

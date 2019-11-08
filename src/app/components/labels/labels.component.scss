@@ -1,0 +1,51 @@
+
+.cardcontainer {
+    margin: auto;
+}
+.container {
+    height: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    padding-left: 10%;
+    padding-right: 4%;
+    padding-top: 4%;
+    overflow: scroll;
+    width: 100%;
+}
+mat-card{
+    word-break: break-word;
+    border-radius: 20px;
+    margin:2px;
+}
+
+.card {
+    .icon{
+        opacity: 0;
+    }
+    &:hover{
+        .icon{
+            opacity: 1;
+        }
+    }
+    margin-bottom: 14px;
+}
+
+.label-chip {
+    .label-cross {
+        opacity: 0;
+    }
+    &:hover{
+        .label-cross{
+            opacity: 1;
+        }
+    }
+    opacity: 0.75;
+    &:hover {
+        opacity: 1;
+    }
+    filter: brightness(80%);
+}
+
+.label-cross {
+    transform: scale(0.7);
+}

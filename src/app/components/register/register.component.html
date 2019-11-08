@@ -27,36 +27,54 @@
             </div>
 
           
-            <div class="email-container" fxLayout="column" fxLayoutAlign = "space-around stretch">
+            <div class="email-container" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around stretch">
                 <mat-form-field appearance="outline" class="reg-input-name">
                   <input matInput placeholder="Enter your email" [formControl]="email" required>
                   <mat-error *ngIf="email.invalid"> {{getErrorMessage()}} </mat-error>
                 </mat-form-field>
               
             
-                <mat-card-content fxFlex="50" fxLayout="column">
+            <div fxFlex="50" fxLayout="column" fxLayout.sm="column" fxLayout.xs="column" fxLayoutAlign="space-around stretch">
                   <mat-form-field appearance="outline" class="reg-input">
                     <mat-label>Password</mat-label>
                     <input matInput placeholder="Enter your password" name="password" [formControl]="password" [type]="hide ? 'password' : 'text'" required>
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     <mat-error *ngIf="password.invalid">{{getErrorPassword()}}</mat-error>
-                </mat-form-field>
+                  </mat-form-field>
               
-                <mat-form-field appearance="outline" class="reg-input">
+                  <mat-form-field appearance="outline" class="reg-input">
                     <mat-label>Confirm Password</mat-label>
                     <input matInput placeholder="Confirm your password" name="confirmpassword" [type]="hide ? 'password' : 'text'" required> <!--pattern="{{ password.value }}" -->
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                     <!-- <mat-error *ngIf="confirmpassword.errors.pattern">Confirm password does not match password</mat-error> -->
-                </mat-form-field>
-                    
-                </mat-card-content>
+                  </mat-form-field>
             </div>
 
+               </div>
+
+             <mat-card>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-card-title>{{serv.price | currency: dollar}}</mat-card-title>
+                    <b><a class="gotoReg" (click)="gotoProduct()">Change Service?</a></b>
+                  </div>
+                  <mat-card-subtitle class="subtitle">{{serv.name}}</mat-card-subtitle>
+                  <mat-card-content>{{serv.description}}</mat-card-content>
+                </mat-card>
 
                 <mat-card-actions fxLayout='row' fxLayout.sm="column" fxLayout.xs="column"  >
                  <button  mat-raised-button color="primary" style="margin:0.625rem" mat-button (click)="onRegister()">REGISTER</button>          
                   <button  mat-raised-button color="primary" routerLink="/login" style="margin:0.625rem"> ALREADY A USER ?</button> 
                 </mat-card-actions>
+
+                 <!-- <mat-card>
+                  <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <mat-card-title>{{serv.price | currency: dollar}}</mat-card-title>
+                    <b><a class="gotoReg" (click)="gotoProduct()">Change Service?</a></b>
+                  </div>
+                  <mat-card-subtitle class="subtitle">{{serv.name}}</mat-card-subtitle>
+                  <mat-card-content>{{serv.description}}</mat-card-content>
+                </mat-card> -->
+
 
 </mat-card>
 </div>

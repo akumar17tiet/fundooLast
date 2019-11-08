@@ -1,32 +1,26 @@
-<body style="background-color:blanchedalmond;" fxFlex="100" fxLayout="column" fxLayoutAlign = "space-around center">  
-<mat-card class="mat-card" fxFlex="75" fxLayout="column" fxLayoutAlign = "space-around center">
 
-<div id="flexcontainer"fxLayout='column' fxLayout.sm="column" fxLayout.xs="column" >
+<div style="background-color: whitesmoke;" fxFlex="100" fxLayoutAlign="space-around center">  
+  <mat-card class="login-card" fxLayout="column" fxLayoutAlign="space-around stretch" fxFlex="30" fxFlex.sm="90" fxFlex.xs="100">
 
+    <mat-card-header> 
+      <mat-card-title class="card-title"><b>Enter Email Here!</b></mat-card-title>
+      <mat-card-subtitle>Enter your registered email to receive reset link</mat-card-subtitle>
+      <img mat-card-avatar src="../../../assets/logo1.png" class="mat-header-img">
+    </mat-card-header>
+  
+    <mat-form-field appearance="outline" class="reg-input" fxLayoutAlign.xs="space-around center">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Enter your email" name="email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  
+    <mat-card-actions fxLayout.sm="column" fxLayoutAlign.sm="space-around center" fxLayout.xs="column" fxLayoutAlign.xs="space-around center">
 
-  <div class="flexitem one" fxLayout="column" fxLayoutAlign = "space-around center">
-    <mat-card-header fxFlex="100">
-      <div mat-card-avatar class="header-image"></div>
-        <mat-card-title class="forget-title" fxLayout="column" fxFlex=60 >FORGOT PASSWORD PAGE</mat-card-title>
-         <mat-card-subtitle>ENTER YOUR CREDENTIALS</mat-card-subtitle>
-       </mat-card-header>
-       
-       <mat-form-field appearance="outline" class="reg-input">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="Enter your email" name="email" [formControl]="email" required>
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        
-      </div>
-
-  </div>
-  <mat-card-actions fxLayout='row' fxLayout.sm="column" fxLayout.xs="column"  >
-   <button mat-raised-button color="primary" routerLink="/reset" style="margin:0.625rem" > SEND REQUEST </button>
-   <button mat-raised-button color="primary" routerLink="/register" style="margin:0.625rem" >BACK TO REGISTRATION PAGE?</button>
-  </mat-card-actions>
-
+    <button mat-raised-button color="primary" class="btn" (click)="sendMail()">Send Mail</button>
+      <!-- <button mat-raised-button color="primary"routerLink="/reset">Send Mail</button> -->
+    </mat-card-actions>  
 </mat-card>
-</body>
+</div> 
 
 
 

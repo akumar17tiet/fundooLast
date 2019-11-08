@@ -1,0 +1,26 @@
+<!-- <div class="master-div" fxLayout="column"  fxFlex="100"> -->
+  <div class="master-div" fxLayoutAlign="center" fxFlex='100'>
+    <div class="archive-divs" fxLayout="row wrap" fxLayoutAlign="center start" fxFlex='100' fxLayoutGap="14px" fxLayout.xs="column"
+      fxLayoutAlign.xs="start stretch" fxFlex.xs="100">
+      <mat-card *ngFor="let record of records" class="archive-cards" [ngStyle]="{'background-color': record.color}"
+        fxFlex.xs="90" fxLayout.xs="column wrap">
+        <div (click)="editDialog(record.title, record.description, record.color, record.id)">
+            <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"
+            [(ngModel)]="record.title"></textarea>
+          <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"
+          [(ngModel)]="record.description"></textarea>
+        </div>
+        <mat-chip-list>
+          <div *ngFor="let label of record.noteLabels" fxLayout="row">
+            <mat-chip [ngStyle]="{'background-color': record.color}" class="label-chip">{{label.label}}<mat-icon class="label-cross" (click)="removeLabel(label.id,record.id)">cancel</mat-icon>
+            </mat-chip>
+          </div>
+        </mat-chip-list>
+        <div fxLayoutAlign="start start">
+          <app-iconlist class="icon" (messageEvent)="deleteNote($event, record.id)" (messageEvent)="changeColor($event, record.id)" (labelEvent)="saveLabel($event, record.id)">
+          </app-iconlist>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+<!-- </div> -->

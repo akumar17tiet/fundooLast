@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import {Routes,RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -32,6 +32,38 @@ import { TakeNoteComponent } from './components/take-note/take-note.component';
 import { DisplayNotesComponent } from './components/display-notes/display-notes.component';
 import { IconlistComponent } from './components/iconlist/iconlist.component';
 import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { NotesComponent } from './components/notes/notes.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
+import { ArchiveComponent } from './components/archive/archive.component';
+import { TrashComponent } from './components/trash/trash.component';
+
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { IconTrashComponent } from './components/icon-trash/icon-trash.component';
+
+import {TextFieldModule} from '@angular/cdk/text-field';
+import { DataServiceService } from "./services/data-service.service";
+import { SearchComponent } from './components/search/search.component';
+import { SearchPipePipe } from './pipes/search-pipe.pipe';
+import { ImageDialogComponent } from './components/image-dialog/image-dialog.component';
+import { ImageCropperModule } from "ngx-image-cropper";
+import { LabelsComponent } from './components/labels/labels.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CollaboratorComponent } from './components/collaborator/collaborator.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from "@angular/material";
+import { QuestionComponent } from './components/question/question.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { MatDividerModule } from '@angular/material/divider';
+
+// import { NoteServiceService } from "./services/notes-services/note-service.service";
+
+import {SnackbarService} from '../app/services/snackbar/snackbar.service';
+import { ProductComponent } from './components/product/product.component';
+import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 @NgModule({
@@ -46,9 +78,23 @@ import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
     TakeNoteComponent,
     DialogboxComponent,
     DisplayNotesComponent,
-    IconlistComponent
+    IconlistComponent,
+    NotesComponent,
+    ReminderComponent,
+    ArchiveComponent,
+    TrashComponent,
+    IconTrashComponent,
+    EditDialogComponent,
     
-    
+    SearchPipePipe,
+    SearchComponent,
+    ImageDialogComponent,
+    LabelsComponent,
+    CollaboratorComponent,
+    QuestionComponent,
+    ProductComponent,
+    ProductDialogComponent 
+   
   ],
   imports: [
     BrowserModule,
@@ -70,9 +116,28 @@ import { DialogboxComponent } from './components/dialogbox/dialogbox.component';
     MatListModule,
     MatMenuModule,
     MatToolbarModule,
-    MatDialogModule
+    MatGridListModule,
+    MatDialogModule,
+    ImageCropperModule,
+    TextFieldModule,
+    MatChipsModule,
+    MatCheckboxModule,
+    
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSnackBarModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
+    MatTabsModule   
+
   ],
-  providers: [ConnectService,],
+  providers: [
+    ConnectService,
+    // NoteServiceService,
+    DataServiceService,
+    MatDatepickerModule,
+    SnackbarService,
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

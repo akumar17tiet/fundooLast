@@ -11,37 +11,54 @@
 //     max-width: 500px;
 //     background-color: rgb(150, 207, 150)
 //   }
-#flexcontainer {
-    // width:800px;
-    // height: 300px;
-    border: 3px solid black;
-    display: flex;
-    flex-flow: column wrap;
-    padding: 100px;
-  }
+// #flexcontainer {
+//     // width:800px;
+//     // height: 300px;
+//     border: 1px solid black;
+//     display: flex;
+//     flex-flow: column wrap;
+//     padding: 100px;
+//   }
   
- .header-image {
-    background-image: url("../../assets/logo.png");
-    background-repeat: no-repeat;     //important
-    background-size:contain;
-  }
- .flexitem {
-    background:lightskyblue;
-    // align-items : center;
-    // width: 500px ;
+//  .header-image {
+//     background-image: url("../../assets/logo.png");
+//     background-repeat: no-repeat;     //important
+//     background-size:contain;
+//   }
+//  .flexitem {
+//     background:lightskyblue;
+//     // align-items : center;
+//     // width: 500px ;
     
-    // height: 60px;
-    // line-height: 100px;
-    // margin: 2px;
-  }
+//     // height: 60px;
+//     // line-height: 100px;
+//     // margin: 2px;
+//   }
   
- .two {
-    background: green;
-    width: 100px;
-    order: 3;
-  }
+//  .two {
+//     background: green;
+//     width: 100px;
+//     order: 3;
+//   }
 
- .name-container > * {
-        width : 100%;
-         }
+//  .name-container > * {
+//         width : 100%;
+//          }
+
+body{
+  height: 100vh;
+}
+
+.login-card{
+  // width: 500px;
+  // margin-left: 31%;
+  // margin-top: 70px;
+  // position: absolute;
+  height: 60vh;
+}
+
+.card-title{
+  color: lightskyblue;
+}
+
   

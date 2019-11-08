@@ -1,8 +1,80 @@
-.cardcontainer{
-    margin:40px;
 
+.card {
+    .icon{
+        opacity: 0;
+    }
+    &:hover{
+        .icon{
+            opacity: 1;
+        }
+    }
+    margin-bottom: 14px;
 }
-.mat-card{
+
+
+.cardcontainer {
+    margin: auto;
+}
+
+
+.custom-modalbox {
+    mat-dialog-container {
+        padding: 0;
+    }
+}
+mat-card{
     border-radius: 20px;
     margin:2px;
+    word-break: break-word;
+    // position: fixed;
+}
+
+
+.label-chip {
+    .label-cross {
+        opacity: 0;
+    }
+    &:hover{
+        .label-cross{
+            opacity: 1;
+        }
+    }
+    opacity: 0.75;
+    &:hover {
+        opacity: 1;
+
+    }
+    filter: brightness(65%);
+}
+.label-cross{
+    transform: scale(0.7);
+}
+.List{
+    flex-direction: column;
+    flex: 10;
+    flex-flow: column;
+}
+.description{
+    overflow: hidden;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.checklist{
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.visiblez{
+    opacity: 0;    
+    background: transparent;
+    &:hover{
+        opacity:1;
+    }
+}
+.placeholder{
+    border: none;
+    outline: none;
+    background: transparent;
+
 }

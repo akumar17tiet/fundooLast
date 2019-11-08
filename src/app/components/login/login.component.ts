@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { ConnectService } from '../../../app/services/services.service';
-import { User } from '../login/login.model';
+import { UserLogin } from '../../model/login.model';
 import { Router } from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,10 @@ export class LoginComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('',[Validators.required]);
   hide = true;
-  userObj: User = new User();
+
+  // userObj: User = new User();
+  userObj: any = new UserLogin();
+  
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' : '';
@@ -34,7 +38,7 @@ export class LoginComponent implements OnInit {
         email: this.email.value,
         password: this.password.value
     }
-    console.log('kjshjkhsjhsjksjkhjks', this.userObj)
+    console.log('inside login', this.userObj)
     let options = {
         data: this.userObj,
         purpose: 'user/login'
@@ -45,6 +49,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('firstName',data.firstName)
       localStorage.setItem('lastName',data.lastName)
       localStorage.setItem('email',data.email)
+      localStorage.setItem('userId',data.userId)
       this.router.navigate(['dashboard'])
   })
 

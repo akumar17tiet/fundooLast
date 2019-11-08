@@ -1,23 +1,75 @@
-<div fxLayout="column" fxLayoutAlign="space-around center">
-  <mat-card [class.mat-elevation-z5]="isActive" fxLayout="row" class="mat-card-note" fxLayoutAlign="space-between"
-    fxFlex="50" fxLayoutGap="100">
+<div fxLayout="column" fxLayoutAlign="space-around center" ng-blur="close()">
+  <mat-card [class.mat-elevation-z5]="isActive" [ngStyle]="{'background-color': color}" fxLayout="row"
+    class="mat-card-note" fxLayoutAlign="space-between" fxFlex="50" fxLayoutGap="100">
+    <div fxLayoutAlign="space-between center" fxFlex="100" (click)="Toggle()">
+        <input fxFlex="90" class="take-note-input" [ngStyle]="{'background-color': color}" matInput placeholder="Take a note..."
+         *ngIf="hide" fxFlex="100" fxLayout="row">
+        
+        <!-- <mat-icon fxFlex="5" *ngIf="!show" (click)="openCheckList()">check_box</mat-icon> -->
+        <mat-icon fxFlex="5" *ngIf="!show" >check_box</mat-icon>
+    </div>
 
-    <input class="take-note-input" matInput placeholder="Take a note..." (click)="Toggle()" *ngIf="hide" fxFlex="100" fxLayout="row">
+
+
     <div *ngIf="show" fxFlex="100">
       <div fxLayout="row" fxLayoutAlign="space-between end">
-        <textarea class="text-area" matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" [formControl]="title" placeholder="Title"></textarea>
-        <button mat-icon-button>
-          <mat-icon matSuffix>turned_in_not</mat-icon>
-        </button>   
+        <textarea  class="text-area" cdkTextareaAutosize [ngStyle]="{'background-color': color}"
+         cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" [(ngModel)]="title" placeholder="Title"></textarea>
+        <mat-icon matSuffix>turned_in_not</mat-icon>
       </div>
-      <div> 
-        <textarea class="text-area" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" [formControl]="note" matInput placeholder="Take a note..."></textarea></div>
-      <mat-action-row fxLayout="row" fxLayoutAlign="space-around stretch">
-          <app-iconlist></app-iconlist>
-        <button style="float: right" fxLayoutAlign="end end" mat-button (click)="close()">Close</button>
+
+      <div>
+        <textarea  class="text-area" [ngStyle]="{'background-color': color}" cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"  [(ngModel)]="note" 
+          placeholder="Take a note..."></textarea>
+        </div>
+           <div >
+              <div *ngFor='let list of checklist'  class="above">
+                  <div *ngIf="list.status=='open' && list.status!='close' && !list.isDeleted" fxLayout="row" fxLayoutAlign="space-between center">
+                      <div fxLayout="row" fxFlex="100">
+                          <mat-icon (click)='removeCheckList(list)' class="visible">check_box_outline_blank</mat-icon>
+                          <input class="checklist" width="90%" [(ngModel)]="list.itemName" (keyup)="updateList(list)" (keyup.enter)="textareachange($event)">
+                          <div class="visiblez" ><mat-icon (click)="deleteCheckList(list)">close</mat-icon></div>
+                      </div>
+                  </div>
+              </div>
+              <div *ngFor='let list of checklist' class="above">
+                  <div *ngIf="list.status=='close' && !list.isDeleted" fxLayout="row" fxLayoutAlign="space-between center">
+                      <div fxLayout="row" fxFlex="100">
+                          <mat-icon (click)='addCheckList(list)' class="visible">check_box</mat-icon>
+                          <input class="checklist" style="text-decoration:line-through;" [(ngModel)]="list.itemName" (keyup)="updateList(list)" (keydown.enter)="textareachange($event)">
+                          <div class="visiblez" ><mat-icon (click)="deleteCheckList(list)">close</mat-icon></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div *ngIf='listToggle' class="above">
+            <!-- <mat-divider></mat-divider> -->
+            <div fxLayout='row'><mat-icon>add</mat-icon>
+            <input class="placeholder" matInput [(ngModel)]="listItem" placeholder="List Here" (keydown.enter)='addlist()'></div>
+            <!-- <mat-divider></mat-divider> -->
+        </div>
+
+      <div *ngIf="remind != ''">
+        <mat-chip-list>
+          <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+            <mat-chip [ngStyle]="{'background-color': color}" class="label-chip">{{remind | date: shortdate}}<mat-icon
+              class="label-cross" (click)="removeReminder()">clear</mat-icon>
+            </mat-chip>
+          </div>
+        </mat-chip-list>
+      </div>
+      <mat-action-row fxLayout="row" fxLayoutAlign="space-around stretch" fxLayoutAlign.xs="center center">
+        <app-iconlist fxFlex='100' (messageEvent)="colorChange($event)" (remindEvent)="saveReminder($event)"
+        (listEvent)="changeListToggle($event)" (collabEvent)="openCollabDialog($event)">
+        </app-iconlist>
+
+        <button style="float:right;" matTooltip="Close and Save" fxLayoutAlign="end end" 
+        mat-button (click)="close()">Close</button>
       </mat-action-row>
+      
     </div>
-    
+
   </mat-card>
-  
+
 </div>

@@ -9,8 +9,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AppComponent {
   title = 'fundooNotes';
-  constructor(private svc:ConnectService, private http:HttpClient){
-    this.svc.print("service working");
+
+  constructor(private userServices:ConnectService, private http: HttpClient){
+    this.userServices.print("Service is Working..");
 }
 ngOnInit(){
 }

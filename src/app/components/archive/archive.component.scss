@@ -1,0 +1,35 @@
+.archive-divs {
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 10%;
+    margin-left: 3%;
+    // position: fixed;
+    // overflow: scroll;
+}
+.archive-cards {
+    .icon{
+        opacity: 0;
+    }
+    &:hover{
+        .icon{
+            opacity: 1;
+        }
+    }
+    margin-bottom: 14px;
+    width: 240px;
+}
+
+.archive-cards {
+    border-radius: 20px;
+    // margin-top: 4%;
+    // margin-left: 3%;
+    // margin: 2px;
+    word-break: break-word;
+}
+.description{
+    outline: none;
+    border: none;
+    overflow: hidden;
+    background: transparent;
+}
+

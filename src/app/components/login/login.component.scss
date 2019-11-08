@@ -1,6 +1,10 @@
 .mat-card {
   height: 100%;
-  border: 2px solid black;
+  // border: 2px solid black;\
+  box-shadow:20px 20px 50px 10px lightskyblue inset;
+  margin-top: 5%;
+  margin-left: 5%;
+  padding: 1%;
 }
 
 .header-image {

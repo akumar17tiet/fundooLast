@@ -19,6 +19,8 @@ export class RegisterComponent implements OnInit {
     // name = new FormControl('',[Validators.required]);
     hide = true;
     true = true;
+    serv = []; //new Addition
+
     FirstNameInvalidMessage() {
         if (this.firstName.hasError("required"))
             return "First Name is required"
@@ -45,7 +47,27 @@ export class RegisterComponent implements OnInit {
         this.userService.print("inside register CONSTRUCTOR"); //inside constructor --> private svc: ConnectService
     }
     ngOnInit() {
-    }
+        this.getCartDetails();
+        if(!localStorage.getItem('cartId'))
+        {
+          this.router.navigate(['/product'])
+        }
+      }
+      //cart job
+      getCartDetails() {
+        let cartId = localStorage.getItem('cartId');
+        let url = 'productcarts/getCartDetails/' + cartId
+        this.userService.getService(url).subscribe((result) => {
+          this.serv = result['data']['product'];
+        }, (error) => {
+          console.log(error);
+        });
+      }
+    
+      gotoProduct() {
+        this.router.navigate(['/product']);
+      }
+      //cart job done
     onRegister() {
 
         this.userObj = {

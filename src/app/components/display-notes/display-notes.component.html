@@ -1,9 +1,106 @@
-<div fxLayout="row wrap" class="cardcontainer">
-    <mat-card *ngFor="let record of records" fxFlex="30" (click)="openDialog(this.record)">
-      <p>{{record.title}}</p>
-      <p>{{record.description}}</p>
-      <div fxLayoutAlign="start start">
-        <app-iconlist></app-iconlist>
+<div fxLayoutAlign="space-around center">
+  <div fxFlex='80'>
+    <div fxLayoutAlign="start start" fxLayoutAlign.sm="center stretch" fxLayout.xs="column" fxLayout.sm="column"
+      class="cardcontainer">
+      <div   fxLayout="row wrap" fxLayoutAlign="start stretch " fxLayoutGap="15px">
+        <mat-card *ngFor="let record of records" class="card" [fxFlex]="listView?'90':'28'"
+          [ngStyle]="{'background-color': record.color}">
+
+          <div  (click)="editDialog(record.title, record.description, record.color, record.id)">
+            <!-- <p>{{record.title}}</p> -->
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+              <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3"
+                [(ngModel)]="record.title"></textarea>
+              <div *ngIf="record.isPined">
+                <mat-icon>bookmark</mat-icon>
+              </div>
+              <div *ngIf="!record.isPined">
+                <mat-icon>bookmark_border</mat-icon>
+              </div>
+            </div>
+
+            <!-- <p>{{record.description}}</p> -->
+            <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"
+              [(ngModel)]="record.description"></textarea>
+          </div>
+
+          <!-- checklist work from here -->
+
+          <!-- <div *ngIf='display'> -->
+          <div *ngFor='let list of record.noteCheckLists' class="above">
+            <div *ngIf="list.status=='open' && list.status!='close' && !list.isDeleted" fxLayout="row"
+              fxLayoutAlign="space-between center" fxFlex="80">
+              <div fxLayout="row" fxFlex="100">
+                <mat-icon (click)='removeCheckList(list, record.id)' class="visible">check_box_outline_blank</mat-icon>
+                <input class="checklist" width="70%" [(ngModel)]="list.itemName" (keyup)="updateList(list, record.id)"
+                  (keyup.enter)="textareachange($event)">
+                <mat-icon class="visiblez" (click)="deleteCheckList(list,record.id)">cancel</mat-icon>
+
+              </div>
+
+            </div>
+          </div>
+          <div *ngFor='let list of record.noteCheckLists' class="above">
+            <div *ngIf="list.status=='close' && !list.isDeleted" fxLayout="row" fxLayoutAlign="space-between center">
+              <div fxLayout="row" fxFlex="100">
+                <mat-icon (click)='addCheckList(list, record.id)' class="visible">check_box</mat-icon>
+               
+                <input class="checklist" style="text-decoration:line-through;" [(ngModel)]="list.itemName"
+                  (keyup)="updateList(list, record.id)" (keydown.enter)="textareachange($event)">
+                <mat-icon class="visiblez" (click)="deleteCheckList(list,record.id)">close</mat-icon>
+              </div>
+            </div>
+          </div>
+          <!-- </div> -->
+          <div *ngIf='listToggle && record.id == tempID' class="above">
+            <!-- <mat-divider></mat-divider> -->
+            <div fxLayout='row'>
+              <mat-icon>add</mat-icon><input class="placeholder"(click)="$event.stopPropagation()" 
+              matInput [(ngModel)]="listItem" placeholder="List Here" (keydown.enter)='addlist(record.id, record.noteCheckLists)'>
+            </div>
+            <!-- <mat-divider></mat-divider> -->
+          </div>
+
+          <!-- checklist last -->
+          <mat-chip-list>
+            <div *ngFor="let label of record.noteLabels" fxLayout="row wrap" fxLayoutAlign="space-between center">
+              <mat-chip [ngStyle]="{'background-color': record.color}" class="label-chip">{{label.label}}<mat-icon
+                  class="label-cross" (click)="removeLabel(label.id,record.id)">cancel</mat-icon>
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+
+          <mat-chip-list>
+            <div *ngFor="let remind of record.reminder" fxLayout="row wrap" fxLayoutAlign="space-between center">
+              <mat-chip [ngStyle]="{'background-color': record.color}" class="label-chip">{{remind| date: 'medium'}}
+                <mat-icon class="label-cross" (click)="removeReminder(record.id)">clear</mat-icon>
+              </mat-chip>
+            </div>
+          </mat-chip-list>
+
+          <mat-chip-list>
+            <div *ngFor="let collab of record.collaborators" fxLayout="row wrap" fxLayoutAlign="space-between center">
+              <mat-icon (click)="openCollabDialog('Collab...', record.id)" matTooltip="{{collab.firstName}}">
+                account_circle</mat-icon>
+            </div>
+          </mat-chip-list>
+          <div>
+            <app-iconlist class="icon" (messageEvent)="deleteNote($event, record.id)"
+              (messageEvent)="archiveNote($event, record.id)" (messageEvent)="changeColor($event, record.id)"
+              (labelEvent)="saveLabel($event, record.id)" (remindEvent)="saveReminder($event, record.id)"
+              (collabEvent)="openCollabDialog($event, record.id)" (questionEvent)="gotoQuestion($event, record.id)"
+              (listEvent)="changeListToggle($event, record.id)">
+            </app-iconlist>
+          </div>
+
+          <div *ngIf="record.questionAndAnswerNotes.length>0" (click)="gotoQuestion('Question...', record.id)">
+            <mat-divider></mat-divider>
+            <p class="ques-title">question Asked</p>
+            <span [innerHTML]="record.questionAndAnswerNotes[0].message"></span>
+          </div>
+
+        </mat-card>
       </div>
-    </mat-card>
+    </div>
+  </div>
 </div>
