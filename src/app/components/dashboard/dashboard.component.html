@@ -26,9 +26,13 @@
           <button mat-button  class="toolbar-refresh" matTooltip="Refresh" >
             <mat-icon (click)="gotoDashboard()">refresh</mat-icon>
             </button>
+            
+            <button mat-button (click)="gotoCart()">
+              <mat-icon>shopping_cart</mat-icon>
+          </button>
 
             <button mat-button class="toolbar-list" matTooltip="List View">
-            <mat-icon>list</mat-icon>
+            <!-- <mat-icon>list</mat-icon> -->
             </button>
             <button mat-button class="toolbar-settings" matTooltip="Settings">
             <mat-icon>settings</mat-icon>

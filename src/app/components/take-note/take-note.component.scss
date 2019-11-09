@@ -38,12 +38,14 @@
     filter:brightness(75%);
 }
 .checklist{
+    cursor: pointer;
     border: none;
     outline: none;
     background: transparent;
 }
 
 .visiblez{
+    cursor: pointer;
     opacity: 0;    
     background: transparent;
     &:hover{        
@@ -51,6 +53,7 @@
     }
 }
 .placeholder{
+    cursor: pointer;
     border: none;
     outline: none;
     background: transparent;

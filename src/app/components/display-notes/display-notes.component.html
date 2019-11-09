@@ -1,28 +1,39 @@
 <div fxLayoutAlign="space-around center">
   <div fxFlex='80'>
     <div fxLayoutAlign="start start" fxLayoutAlign.sm="center stretch" fxLayout.xs="column" fxLayout.sm="column"
-      class="cardcontainer">
-      <div   fxLayout="row wrap" fxLayoutAlign="start stretch " fxLayoutGap="15px">
+      class="cardcontainer"[fxLayout]="listView?'column':'row wrap'"  fxLayoutGap="14px" >
+<!--       
+      <div fxLayout="row wrap" fxLayoutAlign="start stretch " fxLayoutGap="15px">
         <mat-card *ngFor="let record of records" class="card" [fxFlex]="listView?'90':'28'"
-          [ngStyle]="{'background-color': record.color}">
+          [ngStyle]="{'background-color': record.color}"> -->
+       <div fxLayoutAlign="start stretch" *ngFor="let record of records">
+       <mat-card [fxFlex]="listView?'100':''" [ngClass]="listView?'card2':'card'" fxLayout="column"
+       [ngStyle]="{'background-color': record.color}">
 
-          <div  (click)="editDialog(record.title, record.description, record.color, record.id)">
+          <div  (click)="editDialog(record.title, record.description, record.color, record.id)" fxLayout="column">
             <!-- <p>{{record.title}}</p> -->
-            <div fxLayout="row" fxLayoutAlign="space-between stretch">
-              <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3"
+            <!-- <div fxLayout="row" fxLayoutAlign="space-between stretch"> -->
+    <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="2"
                 [(ngModel)]="record.title"></textarea>
-              <div *ngIf="record.isPined">
+          </div>
+
+                <!-- pinned-unpined -->
+              <!-- <div *ngIf="record.isPined">
                 <mat-icon>bookmark</mat-icon>
               </div>
               <div *ngIf="!record.isPined">
-                <mat-icon>bookmark_border</mat-icon>
-              </div>
-            </div>
+                <mat-icon>bookmark_border</mat-icon> -->
+              
 
-            <!-- <p>{{record.description}}</p> -->
-            <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"
-              [(ngModel)]="record.description"></textarea>
-          </div>
+            
+             <!-- pinned-unpined done -->
+              
+             <!-- <p>{{record.description}}</p> -->
+    <textarea cdkTextareaAutosize class="description" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="11"
+    [(ngModel)]="record.description"></textarea>
+
+           
+          <!-- </div> -->
 
           <!-- checklist work from here -->
 
@@ -31,10 +42,10 @@
             <div *ngIf="list.status=='open' && list.status!='close' && !list.isDeleted" fxLayout="row"
               fxLayoutAlign="space-between center" fxFlex="80">
               <div fxLayout="row" fxFlex="100">
-                <mat-icon (click)='removeCheckList(list, record.id)' class="visible">check_box_outline_blank</mat-icon>
+                <mat-icon (click)='removeCheckList(list, record.id)' class="visiblebox">check_box_outline_blank</mat-icon>
                 <input class="checklist" width="70%" [(ngModel)]="list.itemName" (keyup)="updateList(list, record.id)"
                   (keyup.enter)="textareachange($event)">
-                <mat-icon class="visiblez" (click)="deleteCheckList(list,record.id)">cancel</mat-icon>
+                <mat-icon class="visible" (click)="deleteCheckList(list,record.id)">cancel</mat-icon>
 
               </div>
 
@@ -43,11 +54,12 @@
           <div *ngFor='let list of record.noteCheckLists' class="above">
             <div *ngIf="list.status=='close' && !list.isDeleted" fxLayout="row" fxLayoutAlign="space-between center">
               <div fxLayout="row" fxFlex="100">
-                <mat-icon (click)='addCheckList(list, record.id)' class="visible">check_box</mat-icon>
+                <mat-icon (click)='addCheckList(list, record.id)' class="visiblebox">check_box</mat-icon>
                
                 <input class="checklist" style="text-decoration:line-through;" [(ngModel)]="list.itemName"
                   (keyup)="updateList(list, record.id)" (keydown.enter)="textareachange($event)">
-                <mat-icon class="visiblez" (click)="deleteCheckList(list,record.id)">close</mat-icon>
+                  
+                <mat-icon class="visible" (click)="deleteCheckList(list,record.id)">close</mat-icon>
               </div>
             </div>
           </div>

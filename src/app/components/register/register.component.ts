@@ -68,26 +68,28 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/product']);
       }
       //cart job done
-    onRegister() {
-
+      OnRegister() {
         this.userObj = {
-            firstName: this.firstName.value,
-            lastName: this.lastName.value,
-            email: this.email.value,
-            password: this.password.value,
-            service: "advance"
+            
+          firstName : this.firstName.value,
+          lastName : this.lastName.value,
+          email : this.email.value,
+          password : this.password.value,
+          service : this.serv['name'],
+          cartId: localStorage.getItem('cartId')
         }
         let options = {
-            data: this.userObj,
-            purpose: 'user/userSignUp'
+          data : this.userObj,
+          purpose: 'user/userSignUp'
         }
-
-        this.userService.registerService(options.purpose, options.data)
-        .subscribe((data: any) => {
-            this.router.navigate(['login'])
-        }, (error) => {
-            console.log("error", error)
-        }
-        )
-    }
+        this.userService.registerService(options.purpose , options.data).subscribe((data:any)=> {
+          if(data != undefined){
+            console.log(data.data);
+            if(data.data.success){
+              console.log("Registration status "+ data.data.success);
+              this.router.navigate(['login']);
+            }
+          }
+        })
+      }
 }

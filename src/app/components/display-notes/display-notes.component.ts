@@ -33,9 +33,9 @@ export class DisplayNotesComponent implements OnInit {
 
   ngOnInit() {
     this.receiveNotes();
-    this.noteService.currentMessage.subscribe((res) => {
-      this.receiveNotes();
-    });
+    // this.noteService.currentMessage.subscribe((res) => {
+    //   this.receiveNotes();
+    // });
     this.noteService.boolMessage.subscribe((res: any)=>{
       this.listView = res;
       this.receiveNotes();
@@ -240,7 +240,7 @@ export class DisplayNotesComponent implements OnInit {
     console.log(options)
     list.status="close";
     this.noteService.updateCheckList(options).subscribe(data=>{
-      console.log('data', data)
+      this.snackbar.open("Task Done")
     }, 
     error=>{
       console.log("error", error)
@@ -255,12 +255,14 @@ export class DisplayNotesComponent implements OnInit {
     }
     list.status=''
     this.noteService.deleteCheckList(options).subscribe(data=>{
-      console.log('data',data)
+      this.snackbar.open("Checklist deleted successfully")
     },error=>{
       console.log("error",error)
     })
 
   }
+  // this.noteService.noteTrashService(options).subscribe((Object) => {
+    // this.snackbar.open("Color changed successfully")
 
   updateList(list, noteId){
     let options ={
@@ -286,7 +288,7 @@ export class DisplayNotesComponent implements OnInit {
     console.log(options)
     list.status="open";
     this.noteService.updateCheckList(options).subscribe(data=>{
-      console.log('data', data)
+      this.snackbar.open("To-Do Item")
     }, 
     error=>{
       console.log("error", error)
@@ -302,7 +304,7 @@ export class DisplayNotesComponent implements OnInit {
   this.noteService.addList({
     noteId, data
     }).subscribe(data=>{
-      console.log('data',data)
+      this.snackbar.open("New Task added")
       checklist.push(data['data'].details)
       this.listItem=""
     }, error=>{

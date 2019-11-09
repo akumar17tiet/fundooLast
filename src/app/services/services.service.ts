@@ -301,7 +301,17 @@ export class ConnectService {
     console.log(options)
     return this.http.post(this.link+"notes/"+options.noteId+"/checklist/add", options.data, httpOptions);
   }
+  
 
+  getCartDetails(options) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.get(this.link + options.purpose, httpOptions)
+  }
 
 
 }

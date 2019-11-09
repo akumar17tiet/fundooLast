@@ -6,4 +6,5 @@ export class Note{
  isPined?: boolean;
  reminder?: any;
  checklist?: any;
+ 
 }

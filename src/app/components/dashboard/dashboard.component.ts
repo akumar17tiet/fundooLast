@@ -125,6 +125,10 @@ export class DashboardComponent implements OnInit {
   //   this.listView = !this.listView;
   //   this.noteLabelService.changeBool(this.listView);
   // }
+
+  gotoCart() {
+    this.router.navigate(['shoppingCart']);
+  }
   
   }
 

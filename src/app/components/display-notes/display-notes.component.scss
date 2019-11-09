@@ -1,5 +1,9 @@
 
 .card {
+    min-width: 250px;
+    max-width: 250px;
+    size: unset;
+    resize: none;
     .icon{
         opacity: 0;
     }
@@ -10,6 +14,22 @@
     }
     margin-bottom: 14px;
 }
+
+.card2 {
+    size: unset;
+    resize: none;
+    width: 850px;
+    .icon{
+        opacity: 0;
+    }
+    &:hover{
+        .icon{
+            opacity: 1;
+        }
+    }
+    margin-bottom: 14px;
+}
+
 
 
 .cardcontainer {
@@ -55,17 +75,21 @@ mat-card{
     flex-flow: column;
 }
 .description{
+    cursor: pointer;
     overflow: hidden;
     border: none;
     outline: none;
     background: transparent;
+    resize: none;
 }
 .checklist{
+    cursor: pointer;
     border: none;
     outline: none;
     background: transparent;
 }
-.visiblez{
+.visible{
+    cursor: pointer;
     opacity: 0;    
     background: transparent;
     &:hover{
@@ -73,8 +97,20 @@ mat-card{
     }
 }
 .placeholder{
+    cursor: pointer;
     border: none;
     outline: none;
     background: transparent;
 
 }
+.visibleBox {
+    cursor: pointer;
+}
+
+// .text-area {
+//     outline: none;
+//     border: transparent;
+//     resize: none;
+//     overflow: hidden;
+//     resize: none;
+// }

@@ -63,7 +63,7 @@ export class TakeNoteComponent implements OnInit {
         description: this.note,
         color: this.color,
         reminder:this.remind,
-        checklist:JSON.stringify(this.checklist)
+        checklist:JSON.stringify(this.checklist) //checklist has been stringified to pass
       }
       console.log(this.noteModel);
       this.options={

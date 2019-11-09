@@ -64,6 +64,8 @@ import {SnackbarService} from '../app/services/snackbar/snackbar.service';
 import { ProductComponent } from './components/product/product.component';
 import { ProductDialogComponent } from './components/product-dialog/product-dialog.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { CartComponent } from './components/cart/cart.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
@@ -93,7 +95,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     CollaboratorComponent,
     QuestionComponent,
     ProductComponent,
-    ProductDialogComponent 
+    ProductDialogComponent,
+    CartComponent 
    
   ],
   imports: [
@@ -127,7 +130,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     MatDatepickerModule,
     MatSnackBarModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
-    MatTabsModule   
+    MatTabsModule,
+    MatStepperModule   
 
   ],
   providers: [
