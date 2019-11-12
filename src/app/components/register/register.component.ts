@@ -68,7 +68,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/product']);
       }
       //cart job done
-      OnRegister() {
+      onRegister() {
         this.userObj = {
             
           firstName : this.firstName.value,

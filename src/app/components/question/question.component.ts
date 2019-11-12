@@ -17,6 +17,13 @@ export class QuestionComponent implements OnInit {
   notes:any;
   froalaOpen:boolean=false;
 
+  froalaOpen1: any = false;
+  rate;
+  viewReply: boolean = false;
+  viewReply1: any = false;
+  viewReply2: boolean = false;
+  toggle: boolean = false;
+
   constructor(private noteService: ConnectService, public router: Router, public activ: ActivatedRoute) { }
 
   ngOnInit() {
@@ -67,6 +74,9 @@ export class QuestionComponent implements OnInit {
     this.noteService.postQuestionAnswer(options).subscribe((Obj) => {
       console.log(Obj);
       this.getNoteDetail();
+      this.replyContent='';
+      this.editorContent='';
+      this.toggleFroala();
     }, (error) => {
       console.log(error);
     })
@@ -75,9 +85,27 @@ export class QuestionComponent implements OnInit {
   closeQues() {
     this.router.navigate(['']);
   }
+  
+  toggleFroala1(id) {
+    if(!this.toggle) {
+      this.froalaOpen1 = id;
+    }
+    if(this.toggle) {
+      this.froalaOpen1 = false;
+    }
+    this.toggle = !this.toggle;
+  }
+
+  toggleReply() {
+    this.viewReply = !this.viewReply;
+  }
+
+  toggleReply1(id) {
+    this.viewReply1 = id;    
+  }
 
   toggleFroala() {
-    this.froalaOpen = !this.froalaOpen
+    this.froalaOpen = !this.froalaOpen;
   }
 
 }

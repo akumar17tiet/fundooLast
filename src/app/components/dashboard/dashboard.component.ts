@@ -65,6 +65,10 @@ export class DashboardComponent implements OnInit {
     localStorage.clear();
     this.router.navigate(['login']);
   }
+  gotoCart() {
+    this.router.navigate(['shoppingCart']);
+  }
+  
 
   getLabels() {
     const options = {
@@ -126,10 +130,7 @@ export class DashboardComponent implements OnInit {
   //   this.noteLabelService.changeBool(this.listView);
   // }
 
-  gotoCart() {
-    this.router.navigate(['shoppingCart']);
-  }
-  
+
   }
 
 

@@ -16,6 +16,14 @@ export class ArchiveComponent implements OnInit {
   message:any;
   dialogRef: any;
   label: any;
+  loading: boolean = false;
+
+
+  // list
+  // listItem
+  // listToggle: any;
+  // tempID
+  // checklist=[]
   
   constructor(private noteService: ConnectService, public dialog: MatDialog, private snackbar: SnackbarService) { }
 
@@ -27,11 +35,13 @@ export class ArchiveComponent implements OnInit {
     let options = {
       purpose: 'notes/getArchiveNotesList'
     }
+    this.loading = true
     return this.noteService.getNoteServices(options).subscribe((response: any) => {
       this.records = response.data.data.reverse().filter(function (archived) {
         return (archived.isArchived == true && archived.isDeleted == false);
       });
       console.log(response);
+      this.loading=false;
     }, (error) => {
       console.log(error);
     });
@@ -125,5 +135,32 @@ export class ArchiveComponent implements OnInit {
       console.log(error);
     });
   }
+
+  //checklist work tried below
+  
+  // addlist(){
+  //   let list={
+  //     itemName: this.listItem,
+  //     status : "open"
+  //   }
+  //   this.checklist.push(list)
+  //   this.listItem=""
+  // }
+
+  // updateList(list){
+  // }
+
+  // addCheckList(list){
+  //   list.status="open";
+  // }
+
+  // deleteCheckList(list){
+  //   list.status=''
+  // }
+  
+  // removeCheckList(list){
+  // list.status="close"
+  // }
+ 
 
 }

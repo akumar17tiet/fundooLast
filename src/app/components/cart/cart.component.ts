@@ -11,6 +11,7 @@ export class CartComponent implements OnInit {
   service=[];
   isLinear:boolean =true;
   secondFormGroup: FormGroup;
+  address : string;
 
   constructor(private _formBuilder: FormBuilder, private noteService: ConnectService) { }
 
@@ -31,5 +32,26 @@ export class CartComponent implements OnInit {
     }, (error)=> {
       console.log(error);
     })
+  }
+
+  placeOrder(id) {
+    if(!this.address) {
+      return;
+    }
+    else {
+      let info = {
+        cartId : id,
+        address: this.address
+      }
+      let options = {
+        data: info,
+        purpose: 'productcarts/placeOrder'
+      }
+      this.noteService.placeOrderService(options).subscribe((result) => {
+        console.log(result);
+      }, (error) => {
+        console.log(error);
+      })
+    }
   }
 }

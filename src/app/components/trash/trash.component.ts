@@ -15,6 +15,7 @@ export class TrashComponent implements OnInit {
   note :Note;
   message:any;
   delRecords:any;
+  loading: boolean = false;
   
 
   constructor(private noteService: ConnectService,private snackbar: SnackbarService) { }
@@ -26,11 +27,13 @@ export class TrashComponent implements OnInit {
     let options = {
       purpose: 'notes/getTrashNotesList'
     }
+    this.loading = true
     return this.noteService.getNoteServices(options).subscribe((response: any) => {
       this.records = response.data.data.reverse().filter(function (Deleted) {
         return Deleted.isDeleted == true;
       });
       console.log(response);
+      this.loading=false;
     }, (error) => {
       console.log(error);
     });

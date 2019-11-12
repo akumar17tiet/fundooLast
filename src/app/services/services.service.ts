@@ -61,6 +61,16 @@ export class ConnectService {
     }
     return this.http.post(this.link+'productcarts/addToCart', data, httpOptions)
   }
+
+  placeOrderService(options) {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Authorization': localStorage.getItem('token')
+      })
+    }
+    return this.http.post(this.link + options.purpose, options.data, httpOptions)
+  }
   //cart services finished
   
   resetService(options) {
@@ -301,7 +311,8 @@ export class ConnectService {
     console.log(options)
     return this.http.post(this.link+"notes/"+options.noteId+"/checklist/add", options.data, httpOptions);
   }
-  
+
+  //cart work 
 
   getCartDetails(options) {
     let httpOptions = {

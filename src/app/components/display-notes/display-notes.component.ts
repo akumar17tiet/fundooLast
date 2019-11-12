@@ -28,6 +28,7 @@ export class DisplayNotesComponent implements OnInit {
   listItem
   listToggle: any;
   tempID
+  loading: boolean = false;
 
   constructor(private noteService: ConnectService,public dialog:MatDialog, private router: Router, private snackbar: SnackbarService) { }
 
@@ -47,15 +48,17 @@ export class DisplayNotesComponent implements OnInit {
     let options = {
       purpose: 'notes/getNotesList'
     }
+    this.loading = true
     return this.noteService.getNoteServices(options).subscribe((response: any) => {
       this.records = response.data.data.reverse().filter(function (notDeleted) {
         return (notDeleted.isDeleted == false && notDeleted.isArchived == false);
       });
       console.log(this.records);
+      this.loading=false;
     }, (error) => {
       console.log(error);
     });
-
+    
   }
 
   deleteNote($event, id: any) {
@@ -64,6 +67,7 @@ export class DisplayNotesComponent implements OnInit {
         "noteIdList": [id],
         "isDeleted": true
       }
+      this.loading = true
 
       console.log(noteData);
       let options = {
@@ -74,6 +78,7 @@ export class DisplayNotesComponent implements OnInit {
         this.snackbar.open("Note deleted successfully")
         this.receiveNotes();
         // this.noteService.changeMessage('note trashed');
+        this.loading=false;
       }, (error) => {
         console.log(error);
       });
@@ -123,14 +128,19 @@ export class DisplayNotesComponent implements OnInit {
     }
   }
 
-  editDialog(title, description, color, id) {
+  editDialog(title, description, color, id,checklist, label, reminder, collaborators) {
     this.dialogRef = this.dialog.open(EditDialogComponent, {
       width: '450px',
       data: {
         noteIdList: id,
         title: title,
         description: description,
-        color: color
+        color: color,
+        noteLabels: label,
+        reminder: reminder,
+        collaborators: collaborators,
+        noteCheckLists: checklist
+       
       },
       panelClass: 'custom-modalbox'
     });

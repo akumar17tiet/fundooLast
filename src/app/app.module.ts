@@ -66,6 +66,8 @@ import { ProductDialogComponent } from './components/product-dialog/product-dial
 import { MatTabsModule } from '@angular/material/tabs';
 import { CartComponent } from './components/cart/cart.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { BarRatingModule } from "ngx-bar-rating";
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 
 
 @NgModule({
@@ -131,7 +133,16 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatSnackBarModule,
     FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),
     MatTabsModule,
-    MatStepperModule   
+    MatStepperModule,
+    BarRatingModule,
+    NgxLoadingModule.forRoot({
+      animationType: ngxLoadingAnimationTypes.wanderingCubes,
+      backdropBackgroundColour: 'rgba(0,0,0,0.1)', 
+      backdropBorderRadius: '5px',
+      primaryColour: '#4285F4', 
+      secondaryColour: '#0F9D58', 
+      tertiaryColour: '#F4B400'
+  })
 
   ],
   providers: [

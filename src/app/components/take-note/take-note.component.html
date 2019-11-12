@@ -1,7 +1,8 @@
 <div fxLayout="column" fxLayoutAlign="space-around center" ng-blur="close()">
   <mat-card [class.mat-elevation-z5]="isActive" [ngStyle]="{'background-color': color}" fxLayout="row"
     class="mat-card-note" fxLayoutAlign="space-between" fxFlex="50" fxLayoutGap="100">
-    <div fxLayoutAlign="space-between center" fxFlex="100" (click)="Toggle()">
+    
+    <div *ngIf="!show" fxLayoutAlign="space-between center" fxFlex="100" (click)="Toggle()">
         <input fxFlex="90" class="take-note-input" [ngStyle]="{'background-color': color}" matInput placeholder="Take a note..."
          *ngIf="hide" fxFlex="100" fxLayout="row">
         
@@ -10,11 +11,10 @@
     </div>
 
 
-
     <div *ngIf="show" fxFlex="100">
       <div fxLayout="row" fxLayoutAlign="space-between end">
         <textarea  class="text-area" cdkTextareaAutosize [ngStyle]="{'background-color': color}"
-         cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" [(ngModel)]="title" placeholder="Title"></textarea>
+         cdkAutosizeMinRows="1" cdkAutosizeMaxRows="3" #autosize="cdkTextareaAutosize" [(ngModel)]="title" placeholder="Title"></textarea>
         <mat-icon matSuffix>turned_in_not</mat-icon>
       </div>
 
